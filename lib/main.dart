@@ -15,8 +15,11 @@ void main() async {
       if (checkDayAndTimeMatch(
           scheduledTimeInt: scheduledTimeInt,
           scheduledWeekdaysIntList: scheduledWeekdaysIntList)) {
-        await unlockLock(gpio);
-        print('It is time to open the door!');
+        try {
+          await unlockLock(gpio);
+        } catch (e) {
+          print(e);
+        }
       } else {
         print('It is not time to open the door yet.');
       }
